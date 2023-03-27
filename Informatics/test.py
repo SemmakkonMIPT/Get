@@ -1,5 +1,3 @@
 import re
 
-s = "раз, два.три.четыре"
-result = re.split(r"[,.]", s)
-print(result)
+print(int(float(input("input time "))))
