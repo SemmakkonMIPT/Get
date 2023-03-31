@@ -1,3 +1,6 @@
-import re
-
-print(int(float(input("input time "))))
+'''
+3 3
+1 0 1
+0 2 6
+2 1 1
+'''
