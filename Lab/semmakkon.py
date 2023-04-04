@@ -48,3 +48,12 @@ def linGraf(X, Y, Xerr = None, Yerr = None, tipe = [0], plsize = 1, fcolor = Non
         x = np.arange(Left, Right, (Right - Left)*0.0001)
         plt.plot(x, K[1]+K[0]*x, linewidth = plsize, color = fcolor, label = flabel)
     return(MNK(X, Y))
+
+def reverseTab(l):
+    n = len(l)
+    m = len(l[0])
+    tab = [[None for i in range(n)] for j in range(m)]
+    for i in range(n):
+        for j in range(m):
+            tab[j][i] = l[i][j]
+    return tab

@@ -56,8 +56,7 @@ K3 = k3[0]
 sK3 = k3[2]
 K3si = K3*133
 sK3si = sK3*133
-print(K3*10000, sK3*10000)
-print(D738*10000, sD738*10000)
+
 
 k0 = 1.38*10**-23
 R = 8.31
@@ -72,11 +71,16 @@ sSi = Si*(sK3/K3)
 n = P0/k0/T0
 l = 1/(2**0.5*Si*n)
 sl = l*(sSi/Si)
-print(l, sl)
-print(Si, sSi)
 
-n = []
+#print(Tau)
+
+n = [6]
 colors = ['r', 'orange', 'y', 'g', 'b', 'm']
+
+x = [str(round(Tau[i], 2))+' '+str(round(sTau[i], 2)) for i in range(5)]
+nD = [i * 10000 for i in D]
+nsD = [i * 10000 for i in sD]
+y = [str(round(nD[i], 2)) + ' ' + str(round(nsD[i], 2)) for i in range(5)]
 
 if 1 in n:
     fig, ax = plt.subplots()
@@ -117,4 +121,12 @@ if 3 in n:
     ax.set_ylabel('Коэффицент диффузии D, $м^{2}c^{-1}$')
     '''
     ax.set(title='Зависимость коэффицента диффузии от обратного давления D(1/P)', xlabel = 'Обратное давление 1/P, $торр^{-1}$', ylabel = 'Коэффицент диффузии D, $cм^{2}c^{-1}$')
+if 4 in n:
+    tab = [P, x]
+    print(tabulate(reverseTab(tab), tablefmt="fancy_grid"))
+if 5 in n:
+    tab = [P, y]
+    print(tabulate(reverseTab(tab), tablefmt="fancy_grid"))
+if 6 in n:
+    print(tabulate(reverseTab([P, x, y]), tablefmt="fancy_grid"))
 plt.show()
