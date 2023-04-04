@@ -35,16 +35,16 @@ def sred(l):
     return ([s, sx])
 
 
-def linGraf(X, Y, Xerr = None, Yerr = None, tipe = 0, plsize = 1.3, fcolor = None, OXname = None, OYname = None, name = None, left = None, right = None, flabel = None):
-    Label = flabel if tipe == 2 else None
-    if tipe == 0:
+def linGraf(X, Y, Xerr = None, Yerr = None, tipe = [0], plsize = 1, fcolor = None, OXname = None, OYname = None, name = None, left = None, right = None, flabel = None, form = ''):
+    Label = flabel
+    if 0 in tipe:
         fig, ax = plt.subplots()
         ax.set(title = name, xlabel = OXname, ylabel = OYname)
-    plt.errorbar(X, Y, xerr=Xerr, yerr=Yerr, ecolor = fcolor, c = fcolor, fmt = '.', label = Label)
+    plt.errorbar(X, Y, xerr=Xerr, yerr=Yerr, ecolor = fcolor, c = fcolor, fmt = form, label = Label)
     K = MNK(X, Y)
     Right = right if right != None else max(X)
     Left = left if left != None else min(X)
-    if tipe != 2:
+    if 2 not in tipe:
         x = np.arange(Left, Right, (Right - Left)*0.0001)
         plt.plot(x, K[1]+K[0]*x, linewidth = plsize, color = fcolor, label = flabel)
     return(MNK(X, Y))
