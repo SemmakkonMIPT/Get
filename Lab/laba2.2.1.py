@@ -34,6 +34,7 @@ L_S = 13*100
 sL_S = 0.5*100
 K = V/2*L_S
 sK = K*(sL_S/L_S+sV/V)
+print(K, sK)
 
 k = []
 for i in range(5):
@@ -56,7 +57,7 @@ K3 = k3[0]
 sK3 = k3[2]
 K3si = K3*133
 sK3si = sK3*133
-
+print(K3si, sK3si)
 
 k0 = 1.38*10**-23
 R = 8.31
@@ -74,7 +75,7 @@ sl = l*(sSi/Si)
 
 #print(Tau)
 
-n = [6]
+n = []
 colors = ['r', 'orange', 'y', 'g', 'b', 'm']
 
 x = [str(round(Tau[i], 2))+' '+str(round(sTau[i], 2)) for i in range(5)]
