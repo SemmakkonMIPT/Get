@@ -136,4 +136,63 @@ def ZHiperbaloid(A, B, C, n=10):
         b = (B ** 2 + (c / C * B) ** 2) ** 0.5
         ZElips3d(a, b, c)
 
+def dotEllArrZ(A, B, C, n=5):
+    x = np.linspace(-A/2**0.5, A/2**0.5, n)
+    y = np.linspace(-B/2**0.5, B/2**0.5, n)
+    Y = np.concatenate([B * (1 - x ** 2 / A ** 2) ** 0.5, -B * (1 - x ** 2 / A ** 2) ** 0.5, y, y])
+    X = np.concatenate([x, x, A * (1 - y ** 2 / B ** 2) ** 0.5, -A * (1 - y ** 2 / B ** 2) ** 0.5])
+    Z = np.ones(4*n)*C
+    Arr = np.array([X, Y, Z])
+    return Arr
+
+def RaddotEllArrZ(A, B, C, n=5):
+    F = np.linspace(0, 2*pi, 4*n)
+    X = np.cos(F)*A
+    Y = np.sin(F)*B
+    Z = np.ones(4 * n) * C
+    Arr = np.array([X, Y, Z])
+    return Arr
+
+def dotEllZ(A, B, C, n=5, fcolor = 'b'):
+    Arr = dotEllArrZ(A, B, C, n)
+    plt.plot(Arr[0], Arr[1], Arr[2], color = fcolor, linestyle = ' ', marker = '.', markeredgewidth = 0.1)
+def dotEllidArrZ(A, B, C, n=5, m=10):
+    z = np.linspace(-C, C, m)
+    Arr = np.array([[0, 0], [0, 0], [C, -C]])
+    X = dotEllArrZ(A, B, 0, n)[0]
+    Y = dotEllArrZ(A, B, 0, n)[1]
+    for c in z:
+        a = (A ** 2 - (c / C * A) ** 2) ** 0.5
+        b = (B ** 2 - (c / C * B) ** 2) ** 0.5
+        newArr = dotEllArrZ(a, b, c, n)
+        Arr = np.hstack([Arr, newArr])
+    return Arr
+
+def RaddotEllidArrZ(A, B, C, n=5, m=10):
+    z = np.linspace(0, pi, m)
+    Arr = np.array([[0, 0], [0, 0], [C, -C]])
+    X = RaddotEllArrZ(A, B, 0, n)[0]
+    Y = RaddotEllArrZ(A, B, 0, n)[1]
+    for c in z:
+        a = np.sin(c)*A
+        b = np.sin(c)*B
+        newArr = dotEllArrZ(a, b, cos(c)*C, n)
+        Arr = np.hstack([Arr, newArr])
+    return Arr
+
+def dotEllidZ(A, B, C, n=5, m=7, fcolor = 'b'):
+    Arr = dotEllidArrZ(A, B, C, n=n, m=m)
+    plt.plot(Arr[0], Arr[1], Arr[2], color = fcolor, linestyle = ' ', marker = '.', markeredgewidth = 0.1)
+
+def dotEllidY(A, B, C, n=5, m=10, fcolor = 'b'):
+    Arr = dotEllidArrZ(A, C, B, n=5, m=10)
+    plt.plot(Arr[0], Arr[2], Arr[1], color = fcolor, linestyle = ' ', marker = '.', markeredgewidth = 0.1)
+
+def ArrPlot(Arr, fcolor = 'b', O = [0, 0, 0]):
+    plt.plot(Arr[0]+O[0], Arr[1]+O[1], Arr[2]+O[2], color=fcolor, linestyle=' ', marker='.', markeredgewidth=0.1)
+
+def makeMash(n):
+    Arr = np.array([[n, n, n, n, -n, -n, -n, -n], [n, n, -n, -n, n, n, -n, -n], [n, -n, n, -n, n, -n, n, -n]])
+    print(Arr)
+    ArrPlot(Arr)
 

@@ -1,0 +1,1 @@
+print(int(''.split(',')) if 1 == 0 else 2)
