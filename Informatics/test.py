@@ -1,1 +1,1 @@
-print(int(''.split(',')) if 1 == 0 else 2)
+print([[1, 2, 3]].index(1))
