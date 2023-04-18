@@ -35,19 +35,25 @@ def sred(l):
     return ([s, sx])
 
 
-def linGraf(X, Y, Xerr = None, Yerr = None, tipe = [0], plsize = 1, fcolor = None, OXname = None, OYname = None, name = None, gsize = None,  flabel = None, form = '', ms = 5):
+def linGraf(X, Y, Xerr = None, Yerr = None, tipe = [0], plsize = 1, fcolor = None, OXname = None,
+            OYname = None, name = None, gsize = None,  flabel = None, form = '', ms = 5,
+            grid = True, mnkcolor = None, ecolor = None):
     Label = flabel
     if 0 in tipe:
         fig, ax = plt.subplots()
         ax.set(title = name, xlabel = OXname, ylabel = OYname)
-    plt.errorbar(X, Y, xerr=Xerr, yerr=Yerr, ecolor = fcolor, c = fcolor, fmt = form, label = Label, ms = ms)
+        if grid:
+            ax.grid()
+    plt.errorbar(X, Y, xerr=Xerr, yerr=Yerr, ecolor = ecolor if ecolor!=None else fcolor,
+                 c = fcolor, fmt = form, label = Label, ms = ms)
     K = MNK(X, Y)
 
     Right = max(gsize) if gsize != None else max(X)
     Left = min(gsize) if gsize != None else min(X)
+    MNKcolor = mnkcolor if mnkcolor != None else fcolor
     if 2 not in tipe:
         x = np.arange(Left, Right, (Right - Left)*0.0001)
-        plt.plot(x, K[1]+K[0]*x, linewidth = plsize, color = fcolor, label = flabel)
+        plt.plot(x, K[1]+K[0]*x, linewidth = plsize, color = MNKcolor, label = flabel)
     return(MNK(X, Y))
 
 def reverseTab(l):
