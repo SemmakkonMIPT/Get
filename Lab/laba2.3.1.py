@@ -1,6 +1,4 @@
 import matplotlib.pyplot as plt
-from math import *
-from semmakkon import *
 import numpy as np
 
 ro = 885
@@ -32,6 +30,7 @@ V2 = V0*P0/P2
 #print((V2-V1-V0)*10**6*1.05)
 Ppr = 1.1*10**-4
 Ppr = 7.5*10**-5
+
 Pust = 1.3*10**-4
 Pfv = 2.7*10**-3
 Pprv = 8.5*10**-5
@@ -63,14 +62,20 @@ print(t1un)
 for i in range(40, len(P1u)):
     print(P1u[i], t1un[i], sep = ' ', end = ', ')
 
+P2u = np.array([83, 120, 190, 250, 300, 350, 400, 440, 490, 530, 580, 610])
+t2u = np.array([25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80])-25
 
-n = [3]
+
+n = [3, 4]
 if 1 in n:
     plt.scatter(t1, lnP_P1)
 if 2 in n:
     plt.scatter(t2, lnP_P2)
 if 3 in n:
     plt.scatter(t1u, P1u)
+if 4 in n:
+    plt.scatter(t2u, P2u)
+
 
 plt.show()
 
