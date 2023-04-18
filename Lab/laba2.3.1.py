@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from semmakkon import *
 
 ro = 885
 P = 1.1*10**-2
@@ -29,25 +30,28 @@ V1 = V0*P0/P1-V0
 V2 = V0*P0/P2
 #print((V2-V1-V0)*10**6*1.05)
 Ppr = 1.1*10**-4
-Ppr = 7.5*10**-5
+Ppr1 = 7.5*10**-5
 
 Pust = 1.3*10**-4
 Pfv = 2.7*10**-3
-Pprv = 8.5*10**-5
+Ppr2 = 8.5*10**-5
 
 P1 = np.array([6, 5.8, 5.4, 4.6, 3.8, 3, 2.5, 2.1, 1.8, 1.5, 1.4, 1.2, 1.1, 1.05, 0.99, 0.95, 0.91, 0.88, 0.86, 0.84, 0.83, 0.82, 0.81, 0.8, 0.79, 0.78, 0.77, 0.76])
 t1 = [i for i in range(len(P1))]
 t1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 27, 32, 41]
 
-Ppr1 = np.array([Ppr for i in P1])
 P_P1 = P1-Ppr1*10**4
 lnP_P1 = np.log(P_P1)
+
+st1 = [0.5 for i in t1]
+sP1 = np.array([0.05 if p>=1 else 0.005 for p in P1])
+sP_P1 = sP1+0.005
+slnP_P1 = [sP_P1[i]/P_P1[i] for i in range(len(P_P1))]
 
 P2 = np.array([610, 600, 560, 480, 400, 320, 260, 220, 190, 160, 150, 140, 130, 120, 110, 103, 99, 97, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86])/100
 t2 = [i for i in range(len(P2))]
 t2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 18, 19, 20, 21, 22, 23, 24, 27, 30, 35, 41, 49]
 
-Ppr2 = np.array([Pprv for i in P2])
 P_P2 = P2-Ppr2*10**4
 lnP_P2 = np.log(P_P2)
 
@@ -66,15 +70,20 @@ P2u = np.array([83, 120, 190, 250, 300, 350, 400, 440, 490, 530, 580, 610])
 t2u = np.array([25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80])-25
 
 
-n = [3, 4]
+n = [1]
 if 1 in n:
-    plt.scatter(t1, lnP_P1)
+    linGraf(t1, lnP_P1, st1, slnP_P1, form = '.', tipe = [2], ms = 6)
+    LinT1 = t1[4: -4]
+    LinLnP_P1 = lnP_P1[4: -4]
+    k = linGraf(LinT1, LinLnP_P1, form='.', tipe=[], gsize = t1, ms = 6)
 if 2 in n:
     plt.scatter(t2, lnP_P2)
 if 3 in n:
     plt.scatter(t1u, P1u)
 if 4 in n:
     plt.scatter(t2u, P2u)
+if 5 in n:
+    plt.scatter(t1, P1)
 
 
 plt.show()
