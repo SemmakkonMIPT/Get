@@ -63,23 +63,25 @@ sP_P2 = sP2+0.005
 slnP_P2 = [sP_P2[i]/P_P2[i] for i in range(len(P_P2))]
 
 P1u = np.array([77, 81, 88, 97, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250,
-                260, 270, 280, 290, 300, 310, 320, 330, 340, 350, 360, 370, 380, 390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490, 500, 510, 520, 530, 540, 550, 560, 570, 580, 590, 600, 610])
+                260, 270, 280, 290, 300, 310, 320, 330, 340, 350, 360, 370, 380, 390, 400, 410, 420, 430,
+                440, 450, 460, 470, 480, 490, 500, 510, 520, 530, 540, 550, 560, 570, 580, 590, 600, 610])/100
 P1n = np.concatenate([P1u, [10*i for i in range(41, 61)]])
 t1u = [i for i in range(len(P1u))]
-t1u = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23, 24, 25, 27, 28,
-       29, 30, 31, 33, 34, 35, 36, 38, 39, 40, 42, 43, 44, 45, 47, 48, 49, 50, 52, 53, 54, 55, 57, 58, 59, 61, 63, 64]
+t1u = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23, 24, 25, 27, 28, 29, 30,
+       31, 33, 34, 35, 36, 38, 39, 40, 42, 43, 44, 45, 47, 48, 49, 50, 52, 53, 54, 55, 57, 58, 59, 61, 63, 64]
 t1un = t1u + [i for i in range(t1u[-1]+1, t1u[-1]+1+len(P1u)-len(t1u))]
-print(t1un)
-#print([i for i in range(t1u[-1]+2)])
 
-for i in range(40, len(P1u)):
-    print(P1u[i], t1un[i], sep = ' ', end = ', ')
+st1u = [0.5 for i in t1u]
+sP1u = np.array([0.05 if p>=1 else 0.005 for p in P1u])
 
-P2u = np.array([83, 120, 190, 250, 300, 350, 400, 440, 490, 530, 580, 610])
-t2u = np.array([25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80])-25
+P2u = np.array([83, 120, 190, 250, 300, 350, 400, 440, 490, 530, 580, 610])/100
+t2u = list(np.array([25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80])-25)
+
+st2u = [0.5 for i in t2u]
+sP2u = np.array([0.05 if p>=1 else 0.005 for p in P2u])
 
 
-n = [2, 2.1]
+n = [1, 2, 3, 4]
 if 1 in n:
     fig, ax = plt.subplots()
     linGraf(t1, lnP_P1, st1, slnP_P1, form = '.', tipe = [2], ms = 6)
@@ -113,15 +115,48 @@ if 2.1 in n:
     LinLnP_P2 = lnP_P2[3: -5]
     k = linGraf(LinT2, LinLnP_P2, form='.', tipe=[], gsize=t1, ms=6, fcolor='r')
     ax.set(title='Зависимость $ln(P-P_{пр})(t)$',
-           xlabel='Время t, с', ylabel='Логарифм давления $ln(P-P_{пр})(t)$, $ln(торр)$')
+           xlabel='Время t, с', ylabel='Логарифм давления $ln(P-P_{пр})$, $ln(торр)$')
 if 3 in n:
-    plt.scatter(t1u, P1u)
+    fig, ax = plt.subplots()
+    linGraf(t1u, P1u, st1u, sP1u, form='.', tipe=[2], ms=3)
+    LinT1u = t1u[4:-3]
+    LinP1u = P1u[4:-3]
+    k = linGraf(LinT1u, LinP1u, form='.', tipe=[], gsize=t1u, ms=3, plsize=1.5)
+    ax.set(title='Зависимость давления от времени $P(t)$',
+           xlabel='Время от начала измерений t, с', ylabel='Давление $P$, $торр$')
+    ax.grid()
+if 3.1 in n:
+    fig, ax = plt.subplots()
+    linGraf(t1u, P1u, st1u, sP1u, form='s', tipe=[2], ms=2, fcolor = 'g')
+    LinT1u = t1u[4:-3]
+    LinP1u = P1u[4:-3]
+    k = linGraf(LinT1u, LinP1u, form='.', tipe=[], gsize=t1u, ms=3, plsize=1.5, fcolor = 'r')
+    ax.set(title='Зависимость $P(t)$',
+           xlabel='Время t, с', ylabel='Давление $P$, $торр$')
 if 4 in n:
-    plt.scatter(t2u, P2u)
+    fig, ax = plt.subplots()
+    linGraf(t2u, P2u, st2u, sP2u, form='.', tipe=[2], ms=3)
+    LinT2u = t2u[1:-1]
+    LinP2u = P2u[1:-1]
+    print(t2u)
+    k = linGraf(LinT2u, LinP2u, form='.', tipe=[], gsize = t2u,  ms=3, plsize=1.5)
+    ax.set(title='Зависимость давления от времени $P(t)$',
+           xlabel='Время от начала измерений t, с', ylabel='Давление $P$, $торр$')
+    ax.grid()
+if 4.1 in n:
+    fig, ax = plt.subplots()
+    linGraf(t2u, P2u, st2u, sP2u, form='s', tipe=[2], ms=2, fcolor='g')
+    LinT2u = t2u[1:-1]
+    LinP2u = P2u[1:-1]
+    k = linGraf(LinT2u, LinP2u, form='.', tipe=[], gsize=t2u, ms=3, plsize=1.5, fcolor='r')
+    ax.set(title='Зависимость $P(t)$',
+           xlabel='Время t, с', ylabel='Давление $P$, $торр$')
 if 5 in n:
     plt.scatter(t1, P1)
 if 6 in n:
     plt.scatter(t2, P2)
+if 8 in n:
+    plt.scatter(t2u, P2u)
 
 
 plt.show()

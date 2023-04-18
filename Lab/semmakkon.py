@@ -48,8 +48,11 @@ def linGraf(X, Y, Xerr = None, Yerr = None, tipe = [0], plsize = 1, fcolor = Non
                  c = fcolor, fmt = form, label = Label, ms = ms)
     K = MNK(X, Y)
 
-    Right = max(gsize) if gsize != None else max(X)
-    Left = min(gsize) if gsize != None else min(X)
+    if gsize == None:
+        Right, Left = max(X), min(X)
+    else:
+        Right, Left = max(gsize), min(gsize)
+
     MNKcolor = mnkcolor if mnkcolor != None else fcolor
     if 2 not in tipe:
         x = np.arange(Left, Right, (Right - Left)*0.0001)
