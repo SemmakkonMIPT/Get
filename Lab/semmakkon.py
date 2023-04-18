@@ -196,3 +196,35 @@ def makeMash(n):
     print(Arr)
     ArrPlot(Arr)
 
+def Graf3dArr(A, B, fun, C = None, D = None, n = 10):
+    if C==None: c = -A
+    else: c = C
+    if D==None: d = -B
+    else: d = D
+    X = np.linspace(c, A, n)
+    Y = np.linspace(d, B, n)
+    Arr = np.array([[], [], []])
+    for x in X:
+        for y in Y:
+            newArr = np.array([[x], [y], [fun(x, y)]])
+            Arr = np.hstack([Arr, newArr])
+    return Arr
+
+def swapXZ(Arr):
+    newArr = np.array([Arr[2], Arr[1], Arr[0]])
+    return newArr
+
+def swapYZ(Arr):
+    newArr = np.array([Arr[0], Arr[2], Arr[1]])
+    return newArr
+def swapXY(Arr):
+    newArr = np.array([Arr[1], Arr[0], Arr[2]])
+    return newArr
+
+def AllSwaps(Arr):
+    newArr = Arr
+    newArr = np.hstack([newArr, swapXY(Arr)])
+    newArr = np.hstack([newArr, swapXZ(Arr)])
+    newArr = np.hstack([newArr, swapYZ(Arr)])
+    return newArr
+

@@ -2,15 +2,32 @@ import matplotlib.pyplot as plt
 from semmakkon import *
 import numpy as np
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
+def fun1(x, y):
+    try:
+        a = x*y
+        return(a)
+    except ZeroDivisionError:
+        return(0)
+def fun2(x, y):
+    try:
+        a = -5
+        return(a)
+    except ZeroDivisionError:
+        return(0)
+def fun3(x, y):
+    try:
+        a = 10
+        return (a)
+    except ZeroDivisionError:
+        return (0)
 
-ar = np.concatenate([np.array([1, 2, 3]), np.array([1, 2, 3])])
-ar2 = np.ones(10)*10
-ar3 = np.hstack([np.array([[1, 2, 3], [1, 2, 3]]), np.array([[1, 2, 3], [1, 2, 3]])])
-ar4 = np.sin(ar)
-#print(ar4)
-ArrPlot(RaddotEllidArrZ(2, 2, 2))
-#ArrPlot(dotEllidArrZ(2, 2, 2), O = [5, 0, 0])
-makeMash(4)
-plt.show()
+n = [1]
+if 1 in n:
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ArrPlot((Graf3dArr(10, 10, fun1, n = 20)))
+    #ArrPlot(AllSwaps(Graf3dArr(10, 10, fun2, -10, -10, n = 10)))
+    #ArrPlot(Graf3dArr(10, 10, fun2))
+    plt.show()
+elif 2 in n:
+    fun3(1, 1, fun1)
