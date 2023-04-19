@@ -25,6 +25,10 @@ P0torr =  746.7
 P0 = P0torr*133.3
 P1 = dh1*10*ro*10**-2
 P2 = dh2*10*ro*10**-2
+sdh1 = 1*10**-3
+sdh2 = 1*10**-3
+sP1 = P1*(sdh1/dh1)
+sP2 = P2*(sdh2/dh2)
 V0 = 50*10**-6
 V1 = V0*P0/P1-V0
 sV1 = V0*P0/P1*(0.1/dh1)
@@ -32,14 +36,16 @@ sV1 = V0*P0/P1*(0.1/dh1)
 V2 = V0*P0/P2-V1-V0
 sV2 = V0*P0/P2*(0.1/dh2)+sV1
 #print((V2-V1-V0)*10**6*1.05)
-#print(V1, V2, sV1, sV2)
-
+print(V1, V2, sV1, sV2, 'V1, V2, sV1, sV2')
+print(dh1, dh2, 'dh1, dh2')
+print(P1, P2, sP1, sP2, 'P1, P2, sP1, sP2')
 nV1, nV2, nsV1, nsV2 = V1, V2, sV1, sV2
 V1, sV1, V2, sV1 = 1.97*10**-3, 0.2*10**-3, 1.105*10**-3, 0.2*10**-3
 #print(V1, V2, sV1, sV2)
 
 
 Ppr1 = 7.5*10**-5
+Ppr1 = 0
 Ppr2 = 8.5*10**-5
 
 Ppr = 1.1*10**-4
@@ -114,7 +120,7 @@ LinT2 = t2[3: -5]
 LinLnP_P2 = lnP_P2[3: -5]
 MNK2 = MNK(LinT2, LinLnP_P2)
 W2 = -MNK2[0]*V2
-sW2 = W2*(MNK2[2]/MNK2[0]+sV2/V2)
+sW2 = W2*(-MNK2[2]/MNK2[0]+sV2/V2)
 print(W1, sW1, W2, sW2, 'W1, sW1, W2, sW2')
 
 LinT1u = t1u[4:-3]
@@ -142,7 +148,7 @@ print(Qn1RT, sQn1RT, Qn2RT, sQn2RT, 'Qn1RT, sQn1RT, Qn2RT, sQn2RT')
 print(Qn1, sQn1, Qn2, sQn2, 'Qn1, sQn1, Qn2, sQn2')
 
 
-n = []
+n = [1]
 if 1 in n:
     fig, ax = plt.subplots()
     linGraf(t1, lnP_P1, st1, slnP_P1, form = '.', tipe = [2], ms = 6)
@@ -198,7 +204,12 @@ if 4.1 in n:
     ax.set(title='Зависимость $P(t)$',
            xlabel='Время t, с', ylabel='Давление $P$, $торр \cdot 10^{-4}$')
 if 5 in n:
-    plt.scatter(t1, P1)
+    fig, ax = plt.subplots()
+    linGraf(t1, P1, form='.', tipe=[2], ms=6)
+    linGraf(t2, P2, form='.', tipe=[2], ms=6)
+    ax.set(title='Зависимость давления от времени $P(t)$',
+           xlabel='Время от начала измерений t, с', ylabel='Давление $P$, $торр \cdot 10^{-4}$')
+    ax.grid()
 if 6 in n:
     plt.scatter(t2, P2)
 if 8 in n:
