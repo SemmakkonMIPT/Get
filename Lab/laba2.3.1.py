@@ -35,15 +35,30 @@ sV2 = V0*P0/P2*(0.1/dh2)+sV1
 #print(V1, V2, sV1, sV2)
 
 nV1, nV2, nsV1, nsV2 = V1, V2, sV1, sV2
-V1, V2, sV1, sV2 = 1.97*10**-3, 0.2*10**-3, 1.105*10**-3, 0.2*10**-3
+V1, sV1, V2, sV1 = 1.97*10**-3, 0.2*10**-3, 1.105*10**-3, 0.2*10**-3
 #print(V1, V2, sV1, sV2)
 
-Ppr = 1.1*10**-4
-Ppr1 = 7.5*10**-5
 
+Ppr1 = 7.5*10**-5
+Ppr2 = 8.5*10**-5
+
+Ppr = 1.1*10**-4
 Pust = 1.3*10**-4
 Pfv = 2.7*10**-3
-Ppr2 = 8.5*10**-5
+sPpr = 0.05*10**-4
+sPust = 0.05*10**-4
+sPfv = 0.5*10**-4
+
+mu = 0.02897
+r = 4*10**-4
+L = 108*10**-3
+
+Qkap = 4/3*r**3*(2*pi*R*T/mu)**0.5*(Pfv-Pust)*133.322/(L*R*T)
+W = 4/3*r**3*(2*pi*R*T/mu)**0.5*(Pfv-Pust)/L/(Pust-Ppr)
+sQkap = Qkap*(((sPfv/Pfv)**2+(sPust/Pust)**2)**0.5)
+sW = W*(((sPfv/Pfv)**2+(sPust/Pust)**2)**0.5+((sPpr/Ppr)**2+(sPust/Pust)**2)**0.5)
+print(Qkap, sQkap, W, sW, 'Qkap, sQkap, W, sW')
+
 
 P1 = np.array([6, 5.8, 5.4, 4.6, 3.8, 3, 2.5, 2.1, 1.8, 1.5, 1.4, 1.2, 1.1, 1.05, 0.99, 0.95, 0.91,
                0.88, 0.86, 0.84, 0.83, 0.82, 0.81, 0.8, 0.79, 0.78, 0.77, 0.76])
@@ -93,7 +108,7 @@ LinT1 = t1[4: -4]
 LinLnP_P1 = lnP_P1[4: -4]
 MNK1 = MNK(LinT1, LinLnP_P1)
 W1 = -MNK1[0]*V2
-sW1 = W1*(MNK1[2]/MNK1[0]+sV2/V2)
+sW1 = W1*(-MNK1[2]/MNK1[0]+sV1/V1)
 
 LinT2 = t2[3: -5]
 LinLnP_P2 = lnP_P2[3: -5]
@@ -127,7 +142,7 @@ print(Qn1RT, sQn1RT, Qn2RT, sQn2RT, 'Qn1RT, sQn1RT, Qn2RT, sQn2RT')
 print(Qn1, sQn1, Qn2, sQn2, 'Qn1, sQn1, Qn2, sQn2')
 
 
-n = [3, 4]
+n = []
 if 1 in n:
     fig, ax = plt.subplots()
     linGraf(t1, lnP_P1, st1, slnP_P1, form = '.', tipe = [2], ms = 6)
@@ -170,7 +185,6 @@ if 3.1 in n:
 if 4 in n:
     fig, ax = plt.subplots()
     linGraf(t2u, P2u, st2u, sP2u, form='.', tipe=[2], ms=3)
-    print(t2u)
     k = linGraf(LinT2u, LinP2u, form='.', tipe=[], gsize = t2u,  ms=3, plsize=1.5)
     ax.set(title='Зависимость давления от времени $P(t)$',
            xlabel='Время от начала измерений t, с', ylabel='Давление $P$, $торр \cdot 10^{-4}$')
