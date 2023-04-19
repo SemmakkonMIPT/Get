@@ -127,7 +127,7 @@ print(Qn1RT, sQn1RT, Qn2RT, sQn2RT, 'Qn1RT, sQn1RT, Qn2RT, sQn2RT')
 print(Qn1, sQn1, Qn2, sQn2, 'Qn1, sQn1, Qn2, sQn2')
 
 
-n = [3, 3.1]
+n = [3, 4]
 if 1 in n:
     fig, ax = plt.subplots()
     linGraf(t1, lnP_P1, st1, slnP_P1, form = '.', tipe = [2], ms = 6)
@@ -173,7 +173,7 @@ if 4 in n:
     print(t2u)
     k = linGraf(LinT2u, LinP2u, form='.', tipe=[], gsize = t2u,  ms=3, plsize=1.5)
     ax.set(title='Зависимость давления от времени $P(t)$',
-           xlabel='Время от начала измерений t, с', ylabel='Давление $P$, $торр$')
+           xlabel='Время от начала измерений t, с', ylabel='Давление $P$, $торр \cdot 10^{-4}$')
     ax.grid()
 if 4.1 in n:
     fig, ax = plt.subplots()
@@ -182,7 +182,7 @@ if 4.1 in n:
     LinP2u = P2u[1:-1]
     k = linGraf(LinT2u, LinP2u, form='.', tipe=[], gsize=t2u, ms=3, plsize=1.5, fcolor='r')
     ax.set(title='Зависимость $P(t)$',
-           xlabel='Время t, с', ylabel='Давление $P$, $торр$')
+           xlabel='Время t, с', ylabel='Давление $P$, $торр \cdot 10^{-4}$')
 if 5 in n:
     plt.scatter(t1, P1)
 if 6 in n:
