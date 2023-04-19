@@ -32,11 +32,11 @@ sV1 = V0*P0/P1*(0.1/dh1)
 V2 = V0*P0/P2-V1-V0
 sV2 = V0*P0/P2*(0.1/dh2)+sV1
 #print((V2-V1-V0)*10**6*1.05)
-print(V1, V2, sV1, sV2)
+#print(V1, V2, sV1, sV2)
 
 nV1, nV2, nsV1, nsV2 = V1, V2, sV1, sV2
 V1, V2, sV1, sV2 = 1.97*10**-3, 0.2*10**-3, 1.105*10**-3, 0.2*10**-3
-print(V1, V2, sV1, sV2)
+#print(V1, V2, sV1, sV2)
 
 Ppr = 1.1*10**-4
 Ppr1 = 7.5*10**-5
@@ -100,7 +100,7 @@ LinLnP_P2 = lnP_P2[3: -5]
 MNK2 = MNK(LinT2, LinLnP_P2)
 W2 = -MNK2[0]*V2
 sW2 = W2*(MNK2[2]/MNK2[0]+sV2/V2)
-#print(W1, sW1, W2, sW2)
+print(W1, sW1, W2, sW2, 'W1, sW1, W2, sW2')
 
 LinT1u = t1u[4:-3]
 LinP1u = P1u[4:-3]
@@ -113,7 +113,7 @@ LinP2u = P2u[1:-1]
 MNK4 = MNK(LinT2u, LinP2u*10**-4)
 QRT2 = MNK4[0]*V2
 sQRT2 = QRT2*(MNK4[2]/MNK4[0]+sV2/V2)
-#print(QRT1, sQRT1, QRT2, sQRT2)
+print(QRT1, sQRT1, QRT2, sQRT2, 'QRT1, sQRT1, QRT2, sQRT2')
 
 Qn1RT = (Ppr1*W1-QRT1)
 Qn2RT = (Ppr2*W2-QRT2)
@@ -123,11 +123,11 @@ Qn1 = Qn1RT*133.322/R/T
 Qn2 = Qn2RT*133.322/R/T
 sQn1 = sQn1RT*133.322/R/T
 sQn2 = sQn2RT*133.322/R/T
-#print(Qn1RT, sQn1RT, Qn2RT, sQn2RT)
-#print(Qn1, sQn1, Qn2, sQn2)
+print(Qn1RT, sQn1RT, Qn2RT, sQn2RT, 'Qn1RT, sQn1RT, Qn2RT, sQn2RT')
+print(Qn1, sQn1, Qn2, sQn2, 'Qn1, sQn1, Qn2, sQn2')
 
 
-n = []
+n = [3, 3.1]
 if 1 in n:
     fig, ax = plt.subplots()
     linGraf(t1, lnP_P1, st1, slnP_P1, form = '.', tipe = [2], ms = 6)
@@ -159,14 +159,14 @@ if 3 in n:
     linGraf(t1u, P1u, st1u, sP1u, form='.', tipe=[2], ms=3)
     k = linGraf(LinT1u, LinP1u, form='.', tipe=[], gsize=t1u, ms=3, plsize=1.5)
     ax.set(title='Зависимость давления от времени $P(t)$',
-           xlabel='Время от начала измерений t, с', ylabel='Давление $P$, $торр$')
+           xlabel='Время от начала измерений t, с', ylabel='Давление $P$, $торр \cdot 10^{-4}$')
     ax.grid()
 if 3.1 in n:
     fig, ax = plt.subplots()
     linGraf(t1u, P1u, st1u, sP1u, form='s', tipe=[2], ms=2, fcolor = 'g')
     k = linGraf(LinT1u, LinP1u, form='.', tipe=[], gsize=t1u, ms=3, plsize=1.5, fcolor = 'r')
     ax.set(title='Зависимость $P(t)$',
-           xlabel='Время t, с', ylabel='Давление $P$, $торр$')
+           xlabel='Время t, с', ylabel='Давление $P$, $торр \cdot 10^{-4}$')
 if 4 in n:
     fig, ax = plt.subplots()
     linGraf(t2u, P2u, st2u, sP2u, form='.', tipe=[2], ms=3)
