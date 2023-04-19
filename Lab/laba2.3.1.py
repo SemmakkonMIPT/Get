@@ -32,7 +32,11 @@ sV1 = V0*P0/P1*(0.1/dh1)
 V2 = V0*P0/P2-V1-V0
 sV2 = V0*P0/P2*(0.1/dh2)+sV1
 #print((V2-V1-V0)*10**6*1.05)
-#print(V1, V2, sV1, sV2)
+print(V1, V2, sV1, sV2)
+
+nV1, nV2, nsV1, nsV2 = V1, V2, sV1, sV2
+V1, V2, sV1, sV2 = 1.97*10**-3, 0.2*10**-3, 1.105*10**-3, 0.2*10**-3
+print(V1, V2, sV1, sV2)
 
 Ppr = 1.1*10**-4
 Ppr1 = 7.5*10**-5
