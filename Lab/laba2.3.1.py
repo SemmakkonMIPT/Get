@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from semmakkon import *
-
+R = 8.31
+T = 295
 ro = 885
 P = 1.1*10**-2
 h1 = 39.9
@@ -26,9 +27,13 @@ P1 = dh1*10*ro*10**-2
 P2 = dh2*10*ro*10**-2
 V0 = 50*10**-6
 V1 = V0*P0/P1-V0
+sV1 = V0*P0/P1*(0.1/dh1)
 #print(V1*10**6*1.05)
-V2 = V0*P0/P2
+V2 = V0*P0/P2-V1-V0
+sV2 = V0*P0/P2*(0.1/dh2)+sV1
 #print((V2-V1-V0)*10**6*1.05)
+#print(V1, V2, sV1, sV2)
+
 Ppr = 1.1*10**-4
 Ppr1 = 7.5*10**-5
 
@@ -80,13 +85,48 @@ t2u = list(np.array([25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80])-25)
 st2u = [0.5 for i in t2u]
 sP2u = np.array([0.05 if p>=1 else 0.005 for p in P2u])
 
+LinT1 = t1[4: -4]
+LinLnP_P1 = lnP_P1[4: -4]
+MNK1 = MNK(LinT1, LinLnP_P1)
+W1 = -MNK1[0]*V2
+sW1 = W1*(MNK1[2]/MNK1[0]+sV2/V2)
 
-n = [1, 2, 3, 4]
+LinT2 = t2[3: -5]
+LinLnP_P2 = lnP_P2[3: -5]
+MNK2 = MNK(LinT2, LinLnP_P2)
+W2 = -MNK2[0]*V2
+sW2 = W2*(MNK2[2]/MNK2[0]+sV2/V2)
+#print(W1, sW1, W2, sW2)
+
+LinT1u = t1u[4:-3]
+LinP1u = P1u[4:-3]
+MNK3 = MNK(LinT1u, LinP1u*10**-4)
+QRT1 = MNK3[0]*V2
+sQRT1 = QRT1*(MNK3[2]/MNK3[0]+sV2/V2)
+
+LinT2u = t2u[1:-1]
+LinP2u = P2u[1:-1]
+MNK4 = MNK(LinT2u, LinP2u*10**-4)
+QRT2 = MNK4[0]*V2
+sQRT2 = QRT2*(MNK4[2]/MNK4[0]+sV2/V2)
+#print(QRT1, sQRT1, QRT2, sQRT2)
+
+Qn1RT = (Ppr1*W1-QRT1)
+Qn2RT = (Ppr2*W2-QRT2)
+sQn1RT = Ppr1*sW1+sQRT1
+sQn2RT = Ppr2*sW2+sQRT2
+Qn1 = Qn1RT*133.322/R/T
+Qn2 = Qn2RT*133.322/R/T
+sQn1 = sQn1RT*133.322/R/T
+sQn2 = sQn2RT*133.322/R/T
+#print(Qn1RT, sQn1RT, Qn2RT, sQn2RT)
+#print(Qn1, sQn1, Qn2, sQn2)
+
+
+n = []
 if 1 in n:
     fig, ax = plt.subplots()
     linGraf(t1, lnP_P1, st1, slnP_P1, form = '.', tipe = [2], ms = 6)
-    LinT1 = t1[4: -4]
-    LinLnP_P1 = lnP_P1[4: -4]
     k = linGraf(LinT1, LinLnP_P1, form='.', tipe=[], gsize = t1, ms = 6)
     ax.set(title='Зависимость логарифма давления от времени $ln(P-P_{пр})(t)$',
            xlabel='Время от начала измерений t, с', ylabel='Логарифм разности давлений $ln(P-P_{пр})(t)$, $ln(торр)$')
@@ -94,16 +134,12 @@ if 1 in n:
 if 1.1 in n:
     fig, ax = plt.subplots()
     linGraf(t1, lnP_P1, st1, slnP_P1, form = 's', tipe = [2], ms = 4, fcolor = 'g')
-    LinT1 = t1[5: -4]
-    LinLnP_P1 = lnP_P1[5: -4]
     k = linGraf(LinT1, LinLnP_P1, form='.', tipe=[], gsize = t1, ms = 6, fcolor = 'r')
     ax.set(title='Зависимость $ln(P-P_{пр})(t)$',
            xlabel='Время t, с', ylabel='Логарифм давления $ln(P-P_{пр})(t)$, $ln(торр)$')
 if 2 in n:
     fig, ax = plt.subplots()
     linGraf(t2, lnP_P2, st2, slnP_P2, form='.', tipe=[2], ms=6)
-    LinT2 = t2[3: -5]
-    LinLnP_P2 = lnP_P2[3: -5]
     k = linGraf(LinT2, LinLnP_P2, form='.', tipe=[], gsize=t1, ms=6)
     ax.set(title='Зависимость логарифма давления от времени $ln(P-P_{пр})(t)$',
            xlabel='Время от начала измерений t, с', ylabel='Логарифм разности давлений $ln(P-P_{пр})(t)$, $ln(торр)$')
@@ -111,16 +147,12 @@ if 2 in n:
 if 2.1 in n:
     fig, ax = plt.subplots()
     linGraf(t2, lnP_P2, st2, slnP_P2, form='s', tipe=[2], ms=4, fcolor='g')
-    LinT2 = t2[3: -5]
-    LinLnP_P2 = lnP_P2[3: -5]
     k = linGraf(LinT2, LinLnP_P2, form='.', tipe=[], gsize=t1, ms=6, fcolor='r')
     ax.set(title='Зависимость $ln(P-P_{пр})(t)$',
            xlabel='Время t, с', ylabel='Логарифм давления $ln(P-P_{пр})$, $ln(торр)$')
 if 3 in n:
     fig, ax = plt.subplots()
     linGraf(t1u, P1u, st1u, sP1u, form='.', tipe=[2], ms=3)
-    LinT1u = t1u[4:-3]
-    LinP1u = P1u[4:-3]
     k = linGraf(LinT1u, LinP1u, form='.', tipe=[], gsize=t1u, ms=3, plsize=1.5)
     ax.set(title='Зависимость давления от времени $P(t)$',
            xlabel='Время от начала измерений t, с', ylabel='Давление $P$, $торр$')
@@ -128,16 +160,12 @@ if 3 in n:
 if 3.1 in n:
     fig, ax = plt.subplots()
     linGraf(t1u, P1u, st1u, sP1u, form='s', tipe=[2], ms=2, fcolor = 'g')
-    LinT1u = t1u[4:-3]
-    LinP1u = P1u[4:-3]
     k = linGraf(LinT1u, LinP1u, form='.', tipe=[], gsize=t1u, ms=3, plsize=1.5, fcolor = 'r')
     ax.set(title='Зависимость $P(t)$',
            xlabel='Время t, с', ylabel='Давление $P$, $торр$')
 if 4 in n:
     fig, ax = plt.subplots()
     linGraf(t2u, P2u, st2u, sP2u, form='.', tipe=[2], ms=3)
-    LinT2u = t2u[1:-1]
-    LinP2u = P2u[1:-1]
     print(t2u)
     k = linGraf(LinT2u, LinP2u, form='.', tipe=[], gsize = t2u,  ms=3, plsize=1.5)
     ax.set(title='Зависимость давления от времени $P(t)$',
