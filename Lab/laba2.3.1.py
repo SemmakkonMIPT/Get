@@ -45,7 +45,6 @@ V1, sV1, V2, sV1 = 1.97*10**-3, 0.2*10**-3, 1.105*10**-3, 0.2*10**-3
 
 
 Ppr1 = 7.5*10**-5
-Ppr1 = 0
 Ppr2 = 8.5*10**-5
 
 Ppr = 1.1*10**-4
@@ -148,7 +147,7 @@ print(Qn1RT, sQn1RT, Qn2RT, sQn2RT, 'Qn1RT, sQn1RT, Qn2RT, sQn2RT')
 print(Qn1, sQn1, Qn2, sQn2, 'Qn1, sQn1, Qn2, sQn2')
 
 
-n = [1]
+n = [1, 2, 3, 4]
 if 1 in n:
     fig, ax = plt.subplots()
     linGraf(t1, lnP_P1, st1, slnP_P1, form = '.', tipe = [2], ms = 6)
