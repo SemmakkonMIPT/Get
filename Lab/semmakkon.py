@@ -36,7 +36,7 @@ def sred(l):
 
 
 def linGraf(X, Y, Xerr = None, Yerr = None, tipe = [0], plsize = 1, fcolor = None, OXname = None,
-            OYname = None, name = None, gsize = None,  flabel = None, form = '', ms = 5,
+            OYname = None, name = None, gsize = [],  flabel = None, form = '', ms = 5,
             grid = True, mnkcolor = None, ecolor = None):
     Label = flabel
     if 0 in tipe:
@@ -48,7 +48,7 @@ def linGraf(X, Y, Xerr = None, Yerr = None, tipe = [0], plsize = 1, fcolor = Non
                  c = fcolor, fmt = form, label = Label, ms = ms)
     K = MNK(X, Y)
 
-    if gsize == None:
+    if gsize == []:
         Right, Left = max(X), min(X)
     else:
         Right, Left = max(gsize), min(gsize)
@@ -56,7 +56,7 @@ def linGraf(X, Y, Xerr = None, Yerr = None, tipe = [0], plsize = 1, fcolor = Non
     MNKcolor = mnkcolor if mnkcolor != None else fcolor
     if 2 not in tipe:
         x = np.arange(Left, Right, (Right - Left)*0.0001)
-        plt.plot(x, K[1]+K[0]*x, linewidth = plsize, color = MNKcolor, label = flabel)
+        plt.plot(x, K[1]+K[0]*x, linewidth = plsize, color = MNKcolor)
     return(MNK(X, Y))
 
 def reverseTab(l):
