@@ -45,7 +45,14 @@ b2 = Cp*(m[3]*T[3]-m[2]*T[2])/(T[2]-T[3])
 T_1 = 1/T
 sTt = 0.01
 sT_1 = T_1*sTt/T
-print(m, T_1)
+k = MNK(T_1, m)
+a = k[0]*R*Cp/2
+sa = a*k[2]/k[0]
+b = -k[1]*Cp
+sb = -b*k[3]/k[1]
+Ti = 2*a/R/b
+sTi = Ti*(sa/a+sb/b)
+print(a, sa, b, sb, Ti, sTi, 'a, sa, b, sb, Ti, sTi')
 
 n = [1, 2]
 c1 = ['r', 'orange', 'y', 'g', 'b', 'm' ]
@@ -72,8 +79,9 @@ if 2 in n:
     fig, ax = plt.subplots()
     # linGraf(P, dT_20c, sP, sT[0], form = '.', tipe = [2], ms = 6, fcolor = c1[0])
     k = linGraf(T_1*10**5, m*10**5, sT_1*10**5, sm*10**5, form='.', tipe=[], ms=6, fcolor=c1[0])
-    ax.set(title='Зависимость каэфициента Дж.Томп. от обратной температуры $\mu(1/{T})$',
-           xlabel='Обратная температура $1/T, K^{-1} \cdot 10^{-5}$', ylabel='Каэфициент Джоуля-Томпсона $\mu, K/Атм \cdot 10^{-5}$')
+    ax.set(title='Зависимость коэффициента Дж.Том. от обратной температуры $\mu(1/{T})$',
+           xlabel='Обратная температура $1/T, K^{-1} \cdot 10^{-5}$', ylabel='Коэффициент Джоуля-Томсона $\mu, K/Атм \cdot 10^{-5}$')
     ax.grid()
+
 
 plt.show()
