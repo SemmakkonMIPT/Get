@@ -34,7 +34,7 @@ m[2], sm[2] = MNK(Pk, dT_40c)[0]/10**5, MNK(Pk, dT_40c)[2]/10**5
 m[3], sm[3] = MNK(Pk, dT_50c)[0]/10**5, MNK(Pk, dT_50c)[2]/10**5
 m = np.array(m)
 sm = np.array(sm)
-
+print(m, 'm')
 ro = 44
 R = 8.31
 Cp = 4*R
@@ -53,7 +53,7 @@ sb = -b*k[3]/k[1]
 Ti = 2*a/R/b
 sTi = Ti*(sa/a+sb/b)
 print(a, sa, b, sb, Ti, sTi, 'a, sa, b, sb, Ti, sTi')
-
+print(k)
 n = [1, 2, 3]
 c1 = ['r', 'orange', 'y', 'g', 'b', 'm' ]
 c2 = [c1[i] for i in range(5, -1, -1)]
@@ -86,12 +86,12 @@ if 3 in n:
     fig, ax = plt.subplots()
     # linGraf(P, dT_20c, sP, sT[0], form = '.', tipe = [2], ms = 6, fcolor = c1[0])
     k = [0 for i in range(4)]
-    k[0] = linGraf(P, U_20c, sP, sU, form='.', tipe=[], gsize=P, ms=6, fcolor=c1[0], flabel='20°C')
-    k[1] = linGraf(P, U_30c, sP, sU, form='.', tipe=[], gsize=P, ms=6, fcolor=c1[1], flabel='30°C')
-    k[2] = linGraf(Pk, U_40c, sP, sU, form='.', tipe=[], gsize=P, ms=6, fcolor=c1[2], flabel='40°C')
-    k[3] = linGraf(Pk, U_50c, sP, sU, form='.', tipe=[], gsize=P, ms=6, fcolor=c1[3], flabel='50°C')
+    k[0] = linGraf(P, U_20c*10**5, sP, sU*10**5, form='.', tipe=[], gsize=P, ms=6, fcolor=c1[0], flabel='20°C')
+    k[1] = linGraf(P, U_30c*10**5, sP, sU*10**5, form='.', tipe=[], gsize=P, ms=6, fcolor=c1[1], flabel='30°C')
+    k[2] = linGraf(Pk, U_40c*10**5, sP, sU*10**5, form='.', tipe=[], gsize=P, ms=6, fcolor=c1[2], flabel='40°C')
+    k[3] = linGraf(Pk, U_50c*10**5, sP, sU*10**5, form='.', tipe=[], gsize=P, ms=6, fcolor=c1[3], flabel='50°C')
     ax.set(title='Зависимость напряжения от давления $U(\Delta P)$',
-           ylabel='Напряжение $U, °C$', xlabel='Давление $P, Атм$')
+           ylabel='Напряжение $U, В  \cdot 10^{-5}$', xlabel='Давление $P, Атм$')
     ax.legend()
     ax.grid()
 
