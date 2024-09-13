@@ -64,25 +64,25 @@ rTg = [i*1000 for i in rT]
 ''''''
 W_Ks = MNK(rT, lnns)[0]
 W_Km = MNK(rT, lnnm)[0]
-#print(W_Ks*1.38/100)
-#print(W_Km*1.38/100)
+#print(W_Ks*1.txt.38/100)
+#print(W_Km*1.txt.38/100)
 
 n = [1.1, 2.1]
 if(1 in n):
-    A = linGraf(rTg, lnns, OXname= 'Обратная температура 1/T, 1/K $10^{-3}$', OYname=r'Нат. логорифм вязкости ln($\eta$)', name = r'Зависимость ln($\eta$)(1/T) для стеклянных шариков', Yerr = ens, fcolor = 'b')
+    A = linGraf(rTg, lnns, OXname= 'Обратная температура 1.txt/T, 1.txt/K $10^{-3}$', OYname=r'Нат. логорифм вязкости ln($\eta$)', name = r'Зависимость ln($\eta$)(1.txt/T) для стеклянных шариков', Yerr = ens, fcolor = 'b')
     print(A[0] * 13.8, A[2] * 13.8)
 if(2 in n):
-    A = linGraf(rTg, lnnm, OXname= 'Обратная температура 1/T, 1/K $10^{-3}$', OYname=r'Нат. логорифм вязкости ln($\eta$)', name = r'Зависимость ln($\eta$)(1/T) для металлических шариков', Yerr = enm, fcolor = 'b')
+    A = linGraf(rTg, lnnm, OXname= 'Обратная температура 1.txt/T, 1.txt/K $10^{-3}$', OYname=r'Нат. логорифм вязкости ln($\eta$)', name = r'Зависимость ln($\eta$)(1.txt/T) для металлических шариков', Yerr = enm, fcolor = 'b')
     print(A[0] * 13.8, A[2] * 13.8)
 if(3 in n):
-    A = linGraf(rTg*2, lnns+lnnm, OXname='Обратная температура 1/T, 1/K $10^{-3}$', OYname=r'Нат. логорифм вязкости ln($\eta$)', name=r'Зависимость ln($\eta$)(1/T) для всех шариков', Yerr=ens+enm, fcolor='b')
+    A = linGraf(rTg*2, lnns+lnnm, OXname='Обратная температура 1.txt/T, 1.txt/K $10^{-3}$', OYname=r'Нат. логорифм вязкости ln($\eta$)', name=r'Зависимость ln($\eta$)(1.txt/T) для всех шариков', Yerr=ens+enm, fcolor='b')
     #print(A[0] * 1000)
 if(1.1 in n):
-    A = linGraf(rTg*2, lnnsv, OXname= 'Обратная температура 1/T, 1/K $10^{-3}$', OYname=r'Нат. логорифм вязкости ln($\eta$)', name = r'Зависимость ln($\eta$)(1/T) для стеклянных шариков', Yerr = ensv, fcolor = 'b')
+    A = linGraf(rTg*2, lnnsv, OXname= 'Обратная температура 1.txt/T, 1.txt/K $10^{-3}$', OYname=r'Нат. логорифм вязкости ln($\eta$)', name = r'Зависимость ln($\eta$)(1.txt/T) для стеклянных шариков', Yerr = ensv, fcolor = 'b')
     print(A[0] * 13.8, A[2] * 13.8)
     print(A[0], A[2])
 if(2.1 in n):
-    A = linGraf(rTg*2, lnnmv, OXname='Обратная температура 1/T, 1/K $10^{-3}$', OYname=r'Нат. логорифм вязкости ln($\eta$)',name=r'Зависимость ln($\eta$)(1/T) для металлических шариков', Yerr=enmv, fcolor='b')
+    A = linGraf(rTg*2, lnnmv, OXname='Обратная температура 1.txt/T, 1.txt/K $10^{-3}$', OYname=r'Нат. логорифм вязкости ln($\eta$)',name=r'Зависимость ln($\eta$)(1.txt/T) для металлических шариков', Yerr=enmv, fcolor='b')
     print(A[0] * 13.8, A[2] * 13.8)
     print(A[0], A[2])
 
@@ -96,8 +96,8 @@ Table = [Re]
 if 4 in n:
     headers = ['d, цена деления']
     #print(tabulate(Dmd, tablefmt="fancy_grid", headers = headers))
-    #print(tabulate([[i] for i in [i for i in range(1, 9)]], tablefmt="fancy_grid", headers = ['Номер опыта']))
-    #print(tabulate(Tsv, tablefmt="fancy_grid", headers = [i for i in range(1, 9)]))
+    #print(tabulate([[i] for i in [i for i in range(1.txt, 9)]], tablefmt="fancy_grid", headers = ['Номер опыта']))
+    #print(tabulate(Tsv, tablefmt="fancy_grid", headers = [i for i in range(1.txt, 9)]))
     #print(tabulate(None, tablefmt="fancy_grid", headers=None))
     print(tabulate(Table, tablefmt="fancy_grid", headers=[i for i in range(1, 9)]))
 

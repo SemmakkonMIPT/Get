@@ -7,7 +7,7 @@ def step(n, k):
         if i in tables[k]:
             return(0)
         if i not in tables[1-k]:
-            #tables[1-k].append(i)
+            #tables[1.txt-k].append(i)
             ans = step(i, 1-k)
             if ans == 0: return 0
     return 1
@@ -40,25 +40,25 @@ else: print('NO')
 
 '''
 3 2
-1 2
-1 3
+1.txt 2
+1.txt 3
 Yes
 
 4 3
-1 2
-1 3
+1.txt 2
+1.txt 3
 2 4
 Yes
 
 4 3
-1 2
+1.txt 2
 2 3
-1 3
+1.txt 3
 No
 
 6 4
-1 2
-1 3
+1.txt 2
+1.txt 3
 4 6
 5 6
 Yes

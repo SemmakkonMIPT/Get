@@ -28,8 +28,8 @@ for i in range(n):
 
 print(count(n, s, friends))
 '''
-3 1
-0 1 1
-0 0 1
+3 1.txt
+0 1.txt 1.txt
+0 0 1.txt
 0 0 0
 '''

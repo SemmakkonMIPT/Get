@@ -112,10 +112,10 @@ plotEL(XС, YС)
 
 
 a = FP[0]
-b = FP[1]
+b = FP[1.txt]
 c = FP[2]
 TX = TP[0]
-TY = TP[1]
+TY = TP[1.txt]
 TZ = TP[2]
 TD = TP[3]
 TE = TP[5]

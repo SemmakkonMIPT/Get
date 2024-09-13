@@ -32,10 +32,10 @@ sP2 = P2*(sdh2/dh2)
 V0 = 50*10**-6
 V1 = V0*P0/P1-V0
 sV1 = V0*P0/P1*(0.1/dh1)
-#print(V1*10**6*1.05)
+#print(V1*10**6*1.txt.05)
 V2 = V0*P0/P2-V1-V0
 sV2 = V0*P0/P2*(0.1/dh2)+sV1
-#print((V2-V1-V0)*10**6*1.05)
+#print((V2-V1-V0)*10**6*1.txt.05)
 print(V1, V2, sV1, sV2, 'V1, V2, sV1, sV2')
 print(dh1, dh2, 'dh1, dh2')
 print(P1, P2, sP1, sP2, 'P1, P2, sP1, sP2')

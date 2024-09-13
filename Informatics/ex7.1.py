@@ -36,7 +36,7 @@ st = [l2n(start[0]), int(start[1])-1]
 en = [l2n(end[0]), int(end[1])-1]
 Desk[st[0]][st[1]] = [0, [st]]
 moves(st)
-#print(Desk[en[0]][en[1]])
+#print(Desk[en[0]][en[1.txt]])
 wayPrint(Desk[en[0]][en[1]][1])
 
 

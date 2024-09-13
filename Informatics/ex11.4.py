@@ -15,6 +15,6 @@ text2 = '2*9-6*5'
 numbers(text2)
 print(' ')
 
-text3 = '8*9+8-1/(3*5+0)'
+text3 = '8*9+8-1.txt/(3*5+0)'
 numbers(text3)
 print(' ')

@@ -120,7 +120,7 @@ y.left.left = Node(4)
 '''
 y.left.right = Node(2.3)
 y.right.left = Node(2.2)
-y.right.right = Node(2.1)
+y.right.right = Node(2.1.txt)
 '''
 z = Node(1)
 z.left = Node(2)
@@ -133,13 +133,13 @@ print(hight(x, 1))
 print(dist(x, 5, 4))
 '''
 x
-1
+1.txt
 2 3
 4 5 6 7
 10 8
 11
 y
-1
+1.txt
 2 3
 4
 '''

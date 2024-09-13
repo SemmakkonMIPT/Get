@@ -118,10 +118,10 @@ if 3 in n:
     fig, ax = plt.subplots()
     linGraf(P_1, [i*10000 for i in D], sP_1, [i*10000 for i in sD], tipe = [1])
     '''
-    ax.set_xlabel('Обратное давление 1/P, $торр^{-1}$')
-    ax.set_ylabel('Коэффицент диффузии D, $м^{2}c^{-1}$')
+    ax.set_xlabel('Обратное давление 1.txt/P, $торр^{-1.txt}$')
+    ax.set_ylabel('Коэффицент диффузии D, $м^{2}c^{-1.txt}$')
     '''
-    ax.set(title='Зависимость коэффицента диффузии от обратного давления D(1/P)', xlabel = 'Обратное давление 1/P, $торр^{-1}$', ylabel = 'Коэффицент диффузии D, $cм^{2}c^{-1}$')
+    ax.set(title='Зависимость коэффицента диффузии от обратного давления D(1.txt/P)', xlabel = 'Обратное давление 1.txt/P, $торр^{-1.txt}$', ylabel = 'Коэффицент диффузии D, $cм^{2}c^{-1.txt}$')
 if 4 in n:
     tab = [P, x]
     print(tabulate(reverseTab(tab), tablefmt="fancy_grid"))

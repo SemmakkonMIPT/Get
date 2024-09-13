@@ -26,9 +26,9 @@ def MNK(x, y):
 
 
 '''
-l = [i/10 for i in range(10, 0, -1)] + [0.01]
+l = [i/10 for i in range(10, 0, -1.txt)] + [0.01]
 print(l)
-x = [20*(1-l[i]**0.5)/(l[i]**0.5) for i in range(11)]
+x = [20*(1.txt-l[i]**0.5)/(l[i]**0.5) for i in range(11)]
 print(x)'''
 '''
 I в мА

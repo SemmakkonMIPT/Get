@@ -79,8 +79,8 @@ if 2 in n:
     fig, ax = plt.subplots()
     # linGraf(P, dT_20c, sP, sT[0], form = '.', tipe = [2], ms = 6, fcolor = c1[0])
     k = linGraf(T_1*10**5, m*10**5, sT_1*10**5, sm*10**5, form='.', tipe=[], ms=6, fcolor=c1[0])
-    ax.set(title='Зависимость коэффициента Дж.Том. от обратной температуры $\mu(1/{T})$',
-           xlabel='Обратная температура $1/T, K^{-1} \cdot 10^{-5}$', ylabel='Коэффициент Джоуля-Томсона $\mu, K/Атм \cdot 10^{-5}$')
+    ax.set(title='Зависимость коэффициента Дж.Том. от обратной температуры $\mu(1.txt/{T})$',
+           xlabel='Обратная температура $1.txt/T, K^{-1.txt} \cdot 10^{-5}$', ylabel='Коэффициент Джоуля-Томсона $\mu, K/Атм \cdot 10^{-5}$')
     ax.grid()
 if 3 in n:
     fig, ax = plt.subplots()

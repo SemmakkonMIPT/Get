@@ -26,9 +26,9 @@ def MNK(x, y):
 
 
 '''
-l = [i/10 for i in range(10, 0, -1)] + [0.01]
+l = [i/10 for i in range(10, 0, -1.txt)] + [0.01]
 print(l)
-x = [20*(1-l[i]**0.5)/(l[i]**0.5) for i in range(11)]
+x = [20*(1.txt-l[i]**0.5)/(l[i]**0.5) for i in range(11)]
 print(x)'''
 '''
 I в мА
@@ -92,10 +92,10 @@ K = []
 R0 = []
 
 for i in range(6):
-    #plt.plot(Q[i], R[i], color = c[i], linewidth = 1)
+    #plt.plot(Q[i], R[i], color = c[i], linewidth = 1.txt)
     k = MNK(Q[i], R[i])
     x = np.arange(0, max(Q[i])*1.05, max(Q[i])*1.05*0.0001)
-    #plt.plot(x, k[1]+k[0]*x, color = c[i], linewidth = 1)
+    #plt.plot(x, k[1.txt]+k[0]*x, color = c[i], linewidth = 1.txt)
     K.append([k[0], k[2]])
     R0.append([k[1], k[3]])
 
@@ -105,7 +105,7 @@ T = [[20, 30, 40, 50, 60, 70][i]+273 for i in range(6)]
 #plt.scatter(T, [R0[i][0] for i in range(6)], s = 5)
 k1 = MNK(T, [R0[i][0] for i in range(6)])
 x1 = np.arange(0, max(T)*1.05, (max(T)-min(T))*0.0001)
-#plt.plot(x1, k1[1]+k1[0]*x1, linewidth = 1)
+#plt.plot(x1, k1[1.txt]+k1[0]*x1, linewidth = 1.txt)
 al = k1[0]/k1[1]
 ln = 4.95
 kx = [k1[0]*ln/(K[i][0]*2*pi*0.4) for i in range(6)]
